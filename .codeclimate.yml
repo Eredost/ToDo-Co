@@ -1,0 +1,29 @@
+plugins:
+  phpcodesniffer:
+    enabled: true
+    checks:
+      Generic Files LineLength TooLong:
+        enabled: false
+
+  markdownlint:
+    enabled: true
+    checks:
+      MD029:
+        enabled: false
+
+  phpmd:
+    enabled: true
+    checks:
+      Naming/ShortVariable:
+        enabled: false
+
+exclude_patterns:
+  - "**/node_modules/"
+  - "**/test"
+  - "**/tests"
+  - "tests/"
+  - "**/vendor/"
+  - "migrations/"
+  - "docs/"
+  - "var/"
+  - "config/"
