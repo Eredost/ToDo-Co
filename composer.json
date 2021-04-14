@@ -4,35 +4,35 @@
     "license": "proprietary",
     "type": "project",
     "require": {
-        "php": ">=7.1.3",
+        "php": ">=7.4",
         "ext-ctype": "*",
         "ext-iconv": "*",
         "composer/package-versions-deprecated": "1.11.99.1",
-        "doctrine/doctrine-bundle": "^1.10",
-        "doctrine/doctrine-migrations-bundle": "^3.0",
-        "doctrine/orm": "^2.7",
-        "sensio/framework-extra-bundle": "^5.0",
+        "doctrine/doctrine-bundle": "^2.3",
+        "doctrine/doctrine-migrations-bundle": "^3.1",
+        "doctrine/orm": "^2.8",
+        "sensio/framework-extra-bundle": "^6.1",
         "symfony/apache-pack": "^1.0",
-        "symfony/asset": "4.0.*",
+        "symfony/asset": "*",
         "symfony/console": "*",
         "symfony/dotenv": "*",
         "symfony/flex": "^1.12",
-        "symfony/form": "4.0.*",
+        "symfony/form": "*",
         "symfony/framework-bundle": "*",
-        "symfony/monolog-bundle": "^3.6",
+        "symfony/monolog-bundle": "^3.7",
         "symfony/polyfill-apcu": "^1.0",
-        "symfony/proxy-manager-bridge": "4.0.*",
-        "symfony/security-bundle": "4.0.*",
-        "symfony/security-csrf": "4.0.*",
-        "symfony/swiftmailer-bundle": "^3.3",
-        "symfony/twig-bundle": "^4.1",
-        "symfony/validator": "4.0.*",
+        "symfony/proxy-manager-bridge": "*",
+        "symfony/security-bundle": "*",
+        "symfony/security-csrf": "*",
+        "symfony/swiftmailer-bundle": "^3.5",
+        "symfony/twig-bundle": "*",
+        "symfony/validator": "*",
         "symfony/yaml": "*"
     },
     "require-dev": {
         "symfony/phpunit-bridge": "^5.2",
-        "symfony/stopwatch": "^4.0",
-        "symfony/web-profiler-bundle": "^4.0"
+        "symfony/stopwatch": "*",
+        "symfony/web-profiler-bundle": "*"
     },
     "config": {
         "preferred-install": {
@@ -76,7 +76,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.0.*"
+            "require": "4.4.*"
         }
     }
 }
