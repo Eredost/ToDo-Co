@@ -30,6 +30,7 @@
         "symfony/yaml": "*"
     },
     "require-dev": {
+        "symfony/maker-bundle": "^1.30",
         "symfony/phpunit-bridge": "^5.2",
         "symfony/stopwatch": "*",
         "symfony/web-profiler-bundle": "*"
