@@ -27,3 +27,6 @@ exclude_patterns:
   - "docs/"
   - "var/"
   - "config/"
+  - "public/js/bootstrap.*"
+  - "public/index.php"
+  - "src/Kernel.php"
