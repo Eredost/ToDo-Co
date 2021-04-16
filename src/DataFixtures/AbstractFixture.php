@@ -56,7 +56,6 @@ abstract class AbstractFixture extends Fixture
             $entity = $factory($i);
 
             if (null === $entity) {
-
                 throw new \LogicException('Did you forget to return the entity object from your callback to AbstractFixture::createMany()?');
             }
             $this->manager->persist($entity);
@@ -87,7 +86,6 @@ abstract class AbstractFixture extends Fixture
             }
         }
         if (empty($this->referencesIndex[$groupName])) {
-
             throw new \InvalidArgumentException(sprintf('Did not find any references saved with the group name "%s"', $groupName));
         }
 
