@@ -1,6 +1,7 @@
 # Contributing to ToDo & Co
 
 First, a big thank you for taking the time to contribute to this project.
+
 The following is a set of guidelines for contributing to ToDo & Co.
 These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
 
@@ -22,6 +23,7 @@ These are mostly guidelines, not rules. Use your best judgement, and feel free t
 **Do you intend to add a new feature or change an existing one?**
 
 - Suggest your change by creating a new GitHub [Issue](https://github.com/Eredost/ToDo-Co/issues/new) in order to collect feedback about the change
+- Fork the project repository
 - Write your code in a new branch and implement unit and functional tests to make sure that there is no regression and that everything works as expected
 - Open a new GitHub pull request describing all the new changes brought
 - When the pull request has been reviewed by collaborators and no error is returned by CodeClimate, it will be merged.
