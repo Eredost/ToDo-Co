@@ -5,4 +5,3 @@
 ## Additional docs
 
 -   [UML diagrams](docs/diagrams)
-
