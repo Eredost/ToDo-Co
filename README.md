@@ -2,6 +2,12 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/3653f5751726218bcdcd/maintainability)](https://codeclimate.com/github/Eredost/ToDo-Co/maintainability)
 
+Eighth project of the OpenClassrooms PHP application developer path.
+
+This already existing project, developed using the Symfony framework, must be
+improved from a performance point of view, fix the anomalies and add some
+functionalities.
+
 ## Installation
 
 Before you can download the project you must first have a PHP version
