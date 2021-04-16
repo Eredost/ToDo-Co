@@ -4,7 +4,8 @@
 
 ## Contributing
 
-See the [Contributing.md](CONTRIBUTING.md) file for more information on how to contribute to the project.
+See the [Contributing.md](CONTRIBUTING.md) file for more information
+on how to contribute to the project.
 
 ## Additional docs
 
