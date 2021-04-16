@@ -51,9 +51,9 @@ free to propose changes to this document in a pull request.
 - Limit the first line to 72 characters or less
 - Start the commit message with the type, here is a non-exhaustive list
   based on the Angular convention:
-  - **build**: Changes that affect the build system or external 
+  - **build**: Changes that affect the build system or external
     dependencies(example scopes: gulp, broccoli, npm)
-  - **ci**: Changes to our CI configuration files and scripts 
+  - **ci**: Changes to our CI configuration files and scripts
     (example scopes: Circle, BrowserStack, SauceLabs)
   - **docs**: Documentation only changes
   - **feat**: A new feature
