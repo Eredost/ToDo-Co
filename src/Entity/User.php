@@ -46,7 +46,7 @@ class User implements UserInterface
     private array $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=64)
+     * @ORM\Column(type="string", length=120)
      */
     private string $password;
 
