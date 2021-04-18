@@ -10,10 +10,8 @@ use Faker\Generator;
 
 abstract class AbstractFixture extends Fixture
 {
-    private ObjectManager $manager;
-
     protected Generator $faker;
-
+    private ObjectManager $manager;
     private array $referencesIndex = [];
 
     abstract protected function loadData(ObjectManager $manager): void;

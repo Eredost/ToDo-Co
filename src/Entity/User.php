@@ -20,6 +20,11 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  */
 class User implements UserInterface
 {
+    public const ROLES = [
+        'user'  => 'ROLE_USER',
+        'admin' => 'ROLE_ADMIN',
+    ];
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id()

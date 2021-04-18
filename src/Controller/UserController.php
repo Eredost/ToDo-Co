@@ -13,28 +13,34 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
-     * @Route("/users", name="user_list")
+     * @Route("/users",
+     *     name="user_list",
+     *     methods={"GET"}
+     * )
      */
     public function listAction(UserRepository $userRepository)
     {
-        return $this->render('user/list.html.twig', ['users' => $userRepository->findAll()]);
+        return $this->render('user/list.html.twig', [
+            'users' => $userRepository->findAll(),
+        ]);
     }
 
     /**
-     * @Route("/users/create", name="user_create")
+     * @Route("/users/create",
+     *     name="user_create",
+     *     methods={"GET", "POST"}
+     * )
      */
     public function createAction(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
+            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
 
@@ -43,21 +49,24 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/create.html.twig', ['form' => $form->createView()]);
+        return $this->render('user/create.html.twig', [
+            'form' => $form->createView(),
+        ]);
     }
 
     /**
-     * @Route("/users/{id}/edit", name="user_edit")
+     * @Route("/users/{id}/edit",
+     *     name="user_edit",
+     *     methods={"GET", "POST"}
+     * )
      */
     public function editAction(User $user, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $form = $this->createForm(UserType::class, $user);
-
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $password = $encoder->encodePassword($user, $user->getPassword());
-            $user->setPassword($password);
+            $user->setPassword($encoder->encodePassword($user, $user->getPassword()));
 
             $this->getDoctrine()->getManager()->flush();
 
@@ -66,6 +75,9 @@ class UserController extends AbstractController
             return $this->redirectToRoute('user_list');
         }
 
-        return $this->render('user/edit.html.twig', ['form' => $form->createView(), 'user' => $user]);
+        return $this->render('user/edit.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user,
+        ]);
     }
 }

@@ -10,7 +10,8 @@ class SecurityController extends AbstractController
 {
     /**
      * @Route("/login",
-     *     name="login"
+     *     name="login",
+     *     methods={"GET", "POST"}
      * )
      */
     public function loginAction(AuthenticationUtils $authenticationUtils)
@@ -35,6 +36,6 @@ class SecurityController extends AbstractController
      */
     public function logoutCheck()
     {
-        // This code is never executed.
+        throw new \Exception('This statement should never be reached - this method can be left blank');
     }
 }
