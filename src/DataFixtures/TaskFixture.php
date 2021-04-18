@@ -17,7 +17,7 @@ class TaskFixture extends AbstractFixture implements DependentFixtureInterface
         // Creation of many tasks without user linked to it
         $this->createMany(5, 'unlinked_task', function () {
             return (new Task())
-                ->setTitle($this->faker->title)
+                ->setTitle($this->faker->words(3, true))
                 ->setContent($this->faker->paragraph(1))
             ;
         });
@@ -29,7 +29,7 @@ class TaskFixture extends AbstractFixture implements DependentFixtureInterface
         foreach ($users as $user) {
             $this->createMany(3, sprintf('%s_task', $user->getUsername()), function () use ($user) {
                 return (new Task())
-                    ->setTitle($this->faker->title)
+                    ->setTitle($this->faker->words(3, true))
                     ->setContent($this->faker->paragraph(1))
                     ->setUser($user)
                 ;
