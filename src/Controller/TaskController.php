@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
+use App\Security\Voter\TaskVoter;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -87,7 +89,10 @@ class TaskController extends AbstractController
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
-        $this->addFlash('success', sprintf('La tâche %s a bien été marquée comme faite.', $task->getTitle()));
+        $this->addFlash(
+            'success',
+            sprintf('La tâche %s a bien été marquée comme %s.', $task->getTitle(), $task->isDone() ? 'faite': 'non faite')
+        );
 
         return $this->redirectToRoute('task_list');
     }
@@ -97,6 +102,7 @@ class TaskController extends AbstractController
      *     name="task_delete",
      *     methods={"GET"}
      * )
+     * @IsGranted("TASK_MANAGE", subject="task")
      */
     public function deleteTaskAction(Task $task, EntityManagerInterface $entityManager)
     {
