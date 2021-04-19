@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Form\TaskType;
 use App\Repository\TaskRepository;
-use App\Security\Voter\TaskVoter;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -94,18 +93,22 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle",
      *     name="task_toggle",
-     *     methods={"GET"}
+     *     methods={"POST"}
      * )
      */
-    public function toggleTaskAction(Task $task)
+    public function toggleTaskAction(Task $task, Request $request)
     {
-        $task->toggle(!$task->isDone());
-        $this->getDoctrine()->getManager()->flush();
+        $csrfToken = $request->request->get('_csrf_token');
 
-        $this->addFlash(
-            'success',
-            sprintf('La tâche %s a bien été marquée comme %s.', $task->getTitle(), $task->isDone() ? 'faite': 'non faite')
-        );
+        if ($this->isCsrfTokenValid('task_toggle', $csrfToken)) {
+            $task->toggle(!$task->isDone());
+            $this->getDoctrine()->getManager()->flush();
+
+            $this->addFlash(
+                'success',
+                sprintf('La tâche %s a bien été marquée comme %s.', $task->getTitle(), $task->isDone() ? 'faite': 'non faite')
+            );
+        }
 
         return $this->redirectToRoute('task_list');
     }
@@ -113,16 +116,20 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete",
      *     name="task_delete",
-     *     methods={"GET"}
+     *     methods={"POST"}
      * )
      * @IsGranted("TASK_MANAGE", subject="task")
      */
-    public function deleteTaskAction(Task $task, EntityManagerInterface $entityManager)
+    public function deleteTaskAction(Task $task, EntityManagerInterface $entityManager, Request $request)
     {
-        $entityManager->remove($task);
-        $entityManager->flush();
+        $csrfToken = $request->request->get('_csrf_token');
 
-        $this->addFlash('success', 'La tâche a bien été supprimée.');
+        if ($this->isCsrfTokenValid('task_delete', $csrfToken)) {
+            $entityManager->remove($task);
+            $entityManager->flush();
+
+            $this->addFlash('success', 'La tâche a bien été supprimée.');
+        }
 
         return $this->redirectToRoute('task_list');
     }
