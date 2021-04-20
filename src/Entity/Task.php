@@ -25,12 +25,20 @@ class Task
     /**
      * @ORM\Column(type="string")
      * @Assert\NotBlank(message="Vous devez saisir un titre.")
+     * @Assert\Length(
+     *     max = 50,
+     *     maxMessage = "Le titre ne peut pas dépasser {{ limit }} caractères"
+     * )
      */
     private string $title;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank(message="Vous devez saisir du contenu.")
+     * @Assert\Length(
+     *     max = 500,
+     *     maxMessage = "Le contenu ne peut pas dépasser {{ limit }} caractères"
+     * )
      */
     private string $content;
 
