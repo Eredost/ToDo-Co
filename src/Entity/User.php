@@ -35,23 +35,38 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", length=60, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
-     * @Assert\Email(message="Le format de l'adresse n'est pas correcte.")
+     * @Assert\Email(message="Le format de l'adresse email n'est pas correcte.")
      */
     private string $email;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
      * @Assert\NotBlank(message="Vous devez saisir un nom d'utilisateur.")
+     * @Assert\Length(
+     *     max = 25,
+     *     maxMessage = "Le nom d'utilisateur ne peut pas dépasser {{ limit }} caractères"
+     * )
      */
     private string $username;
 
     /**
      * @ORM\Column(type="json")
+     * @Assert\All(
+     *     @Assert\Choice(
+     *         choices = self::ROLES,
+     *         message = "Vous devez fournir un rôle d'utilisateur valide. Rôles disponibles : {{ choices }}"
+     *     )
+     * )
      */
     private array $roles = [];
 
     /**
      * @ORM\Column(type="string", length=120)
+     * @Assert\NotBlank(message = "Le mot de passe ne peut pas être vide")
+     * @Assert\Regex(
+     *     pattern = "/(?=^.{8,40}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/",
+     *     message = "Le mot de passe doit contenit un minimum de 8 caractères et un maximum de 40 caractères dont une minuscule, une majuscule et un chiffre"
+     * )
      */
     private string $password;
 
