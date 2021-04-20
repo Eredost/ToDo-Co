@@ -30,7 +30,7 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="string", length=60, unique=true)
@@ -70,7 +70,12 @@ class User implements UserInterface
      */
     private string $password;
 
-    public function getId(): int
+    public function __construct()
+    {
+        $this->id = null;
+    }
+
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -128,6 +133,7 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * @codeCoverageIgnore
      */
     public function eraseCredentials(): void
     {
@@ -136,6 +142,7 @@ class User implements UserInterface
 
     /**
      * @see UserInterface
+     * @codeCoverageIgnore
      */
     public function getSalt()
     {
