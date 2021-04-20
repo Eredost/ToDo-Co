@@ -20,17 +20,27 @@ class UserFixture extends AbstractFixture
     protected function loadData(ObjectManager $manager): void
     {
         // Creation of a user with administrator privileges
-        $admin = UserProvider::getAdminUser();
-        $adminUser = (new User())
-            ->setUsername($admin['username'])
-            ->setEmail($admin['email'])
-            ->setRoles($admin['roles'])
+        $credentials = UserProvider::getAdminUser();
+        $admin = (new User())
+            ->setUsername($credentials['username'])
+            ->setEmail($credentials['email'])
+            ->setRoles($credentials['roles'])
         ;
-        $adminUser->setPassword($this->encoder->encodePassword($adminUser, $admin['password']));
-        $manager->persist($adminUser);
+        $admin->setPassword($this->encoder->encodePassword($admin, $credentials['password']));
+        $manager->persist($admin);
+
+        // Creation of a simple user for test purposes
+        $credentials = UserProvider::getTestUser();
+        $user = (new User())
+            ->setUsername($credentials['username'])
+            ->setEmail($credentials['email'])
+            ->setRoles($credentials['roles'])
+        ;
+        $user->setPassword($this->encoder->encodePassword($user, $credentials['password']));
+        $manager->persist($user);
 
         // Creation of simple users who will be linked to tasks
-        $this->createMany(4, 'main_user', function ($count) {
+        $this->createMany(4, 'main_user', function () {
             $user = (new User())
                 ->setUsername($this->faker->userName)
                 ->setEmail($this->faker->safeEmail)
