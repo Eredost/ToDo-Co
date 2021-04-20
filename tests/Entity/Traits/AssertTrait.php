@@ -3,6 +3,8 @@
 
 namespace App\Tests\Entity\Traits;
 
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+
 trait AssertTrait
 {
     abstract protected function getEntity();
@@ -22,7 +24,7 @@ trait AssertTrait
     private function assertHasErrors($entity, int $number = 0, ?string $groups = null)
     {
         self::bootKernel();
-        $errors = self::$container->get('validator')->validate($entity, null, $groups);
+        $errors = self::$container->get(ValidatorInterface::class)->validate($entity, null, $groups);
         $messages = [];
 
         /** @var ConstraintViolation $error */
