@@ -15,7 +15,7 @@ class Task
      * @ORM\Id()
      * @ORM\GeneratedValue()
      */
-    private int $id;
+    private ?int $id;
 
     /**
      * @ORM\Column(type="datetime")
@@ -54,12 +54,13 @@ class Task
 
     public function __construct()
     {
+        $this->id        = null;
         $this->createdAt = new \Datetime();
         $this->isDone    = false;
         $this->user      = null;
     }
 
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }

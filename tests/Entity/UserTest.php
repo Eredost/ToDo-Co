@@ -26,6 +26,11 @@ class UserTest extends KernelTestCase
         $this->assertHasErrors($this->getEntity());
     }
 
+    public function testReturnTypeId(): void
+    {
+        self::assertNull($this->getEntity()->getId());
+    }
+
     public function testInvalidBlankEmail(): void
     {
         $this->assertHasErrors($this->getEntity()->setEmail(''), 1);
@@ -45,6 +50,11 @@ class UserTest extends KernelTestCase
         $this->assertHasErrors($this->getEntity()->setEmail('admin@todo-co.fr'), 1);
     }
 
+    public function testReturnTypeEmail(): void
+    {
+        self::assertIsString($this->getEntity()->getEmail());
+    }
+
     public function testInvalidBlankUsername(): void
     {
         $this->assertHasErrors($this->getEntity()->setUsername(''), 1);
@@ -60,6 +70,11 @@ class UserTest extends KernelTestCase
         $this->assertHasErrors($this->getEntity()->setUsername('admin'), 1);
     }
 
+    public function testReturnTypeUsername(): void
+    {
+        self::assertIsString($this->getEntity()->getUsername());
+    }
+
     public function testInvalidBlankRoles(): void
     {
         $this->assertHasErrors($this->getEntity()->setRoles(['']), 1);
@@ -68,6 +83,11 @@ class UserTest extends KernelTestCase
     public function testInvalidValueRoles(): void
     {
         $this->assertHasErrors($this->getEntity()->setRoles(['ROLE_USE', 'ROLE_MODERATOR']), 2);
+    }
+
+    public function testReturnTypeRoles(): void
+    {
+        self::assertIsArray($this->getEntity()->getRoles());
     }
 
     public function testInvalidBlankPassword(): void
@@ -91,5 +111,10 @@ class UserTest extends KernelTestCase
         $this->assertHasErrors($user->setPassword('Password'), 1);
         $this->assertHasErrors($user->setPassword('pas3word'), 1);
         $this->assertHasErrors($user->setPassword('P3363388'), 1);
+    }
+
+    public function testReturnTypePassword(): void
+    {
+        self::assertIsString($this->getEntity()->getPassword());
     }
 }
