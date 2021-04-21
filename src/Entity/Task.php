@@ -30,7 +30,7 @@ class Task
      *     maxMessage = "Le titre ne peut pas dépasser {{ limit }} caractères"
      * )
      */
-    private string $title;
+    private ?string $title;
 
     /**
      * @ORM\Column(type="text")
@@ -40,7 +40,7 @@ class Task
      *     maxMessage = "Le contenu ne peut pas dépasser {{ limit }} caractères"
      * )
      */
-    private string $content;
+    private ?string $content;
 
     /**
      * @ORM\Column(type="boolean")
@@ -77,24 +77,24 @@ class Task
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
         return $this->title;
     }
 
-    public function setTitle(string $title): self
+    public function setTitle(?string $title): self
     {
         $this->title = $title;
 
         return $this;
     }
 
-    public function getContent(): string
+    public function getContent(): ?string
     {
         return $this->content;
     }
 
-    public function setContent(string $content): self
+    public function setContent(?string $content): self
     {
         $this->content = $content;
 

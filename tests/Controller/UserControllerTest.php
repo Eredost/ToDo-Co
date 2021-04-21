@@ -210,12 +210,13 @@ class UserControllerTest extends WebTestCase
         $user = $this->getUser('user');
         $this->logIn($this->client, $this->getUser('admin'));
         $this->client->request('GET', sprintf('/users/%d/edit', $user->getId()));
+        self::assertResponseIsSuccessful();
+
         $this->client->submitForm('Modifier', [
             'user[username]' => 'a',
             'user[password][first]' => 'Pas3word',
             'user[password][second]' => 'Pas3word',
         ]);
-
         self::assertResponseRedirects('/users');
         $this->client->followRedirect();
 
