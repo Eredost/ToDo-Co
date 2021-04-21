@@ -104,6 +104,9 @@ class LoginFormAuthenticator extends AbstractGuardAuthenticator
         return new RedirectResponse($this->urlGenerator->generate('homepage'));
     }
 
+    /**
+     * @codeCoverageIgnore
+     */
     public function supportsRememberMe(): bool
     {
         return false;
