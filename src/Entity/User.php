@@ -37,7 +37,7 @@ class User implements UserInterface
      * @Assert\NotBlank(message="Vous devez saisir une adresse email.")
      * @Assert\Email(message="Le format de l'adresse email n'est pas correcte.")
      */
-    private string $email;
+    private ?string $email;
 
     /**
      * @ORM\Column(type="string", length=25, unique=true)
@@ -47,7 +47,7 @@ class User implements UserInterface
      *     maxMessage = "Le nom d'utilisateur ne peut pas dépasser {{ limit }} caractères"
      * )
      */
-    private string $username;
+    private ?string $username;
 
     /**
      * @ORM\Column(type="json")
@@ -68,7 +68,7 @@ class User implements UserInterface
      *     message = "Le mot de passe doit contenit un minimum de 8 caractères et un maximum de 40 caractères dont une minuscule, une majuscule et un chiffre"
      * )
      */
-    private string $password;
+    private ?string $password;
 
     public function __construct()
     {
@@ -80,24 +80,24 @@ class User implements UserInterface
         return $this->id;
     }
 
-    public function getEmail(): string
+    public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
         return $this;
     }
 
-    public function getUsername(): string
+    public function getUsername(): ?string
     {
         return $this->username;
     }
 
-    public function setUsername(string $username): self
+    public function setUsername(?string $username): self
     {
         $this->username = $username;
 
@@ -119,12 +119,12 @@ class User implements UserInterface
         return $this;
     }
 
-    public function getPassword(): string
+    public function getPassword(): ?string
     {
         return $this->password;
     }
 
-    public function setPassword(string $password): self
+    public function setPassword(?string $password): self
     {
         $this->password = $password;
 
