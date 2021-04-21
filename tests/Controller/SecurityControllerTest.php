@@ -3,11 +3,9 @@
 
 namespace App\Tests\Controller;
 
-use App\Repository\UserRepository;
 use App\Tests\Controller\Traits\AuthTrait;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 class SecurityControllerTest extends WebTestCase
 {
@@ -18,13 +16,6 @@ class SecurityControllerTest extends WebTestCase
     protected function setUp(): void
     {
         $this->client = static::createClient();
-    }
-
-    protected function getUser(string $username): UserInterface
-    {
-        return self::$container->get(UserRepository::class)
-            ->findOneBy(['username' => $username])
-        ;
     }
 
     public function testLogout(): void

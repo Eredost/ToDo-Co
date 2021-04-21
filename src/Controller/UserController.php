@@ -57,6 +57,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/edit",
      *     name="user_edit",
+     *     requirements={"id": "\d+"},
      *     methods={"GET", "POST"}
      * )
      */
