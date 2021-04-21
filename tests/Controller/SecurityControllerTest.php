@@ -76,6 +76,21 @@ class SecurityControllerTest extends WebTestCase
         self::assertPageTitleContains('Accueil');
     }
 
+    public function testLogInAfterRedirection(): void
+    {
+        $this->client->request('GET', '/tasks');
+        self::assertResponseRedirects('/login');
+        $this->client->followRedirect();
+
+        $this->client->submitForm('Se connecter', [
+            'username'    => 'admin',
+            'password'    => 'L4hA5tcRS4yBcJLp',
+        ]);
+        self::assertResponseRedirects();
+        $this->client->followRedirect();
+        self::assertPageTitleContains('Liste des tâches');
+    }
+
     protected function tearDown(): void
     {
         parent::tearDown();
