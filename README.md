@@ -54,4 +54,6 @@ on how to contribute to the project.
 
 ## Additional docs
 
--   [UML diagrams](docs/diagrams)
+- [UML diagrams](docs/diagrams)
+- [Authentication implementation](docs/Documentation_authentification.pdf)
+- [Quality and performance report](docs/Rapport_qualite.pdf)
