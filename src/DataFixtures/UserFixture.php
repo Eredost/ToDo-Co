@@ -28,6 +28,7 @@ class UserFixture extends AbstractFixture
         ;
         $admin->setPassword($this->encoder->encodePassword($admin, $credentials['password']));
         $manager->persist($admin);
+        $this->addReference('admin_user', $admin);
 
         // Creation of a simple user for test purposes
         $credentials = UserProvider::getTestUser();
@@ -38,6 +39,7 @@ class UserFixture extends AbstractFixture
         ;
         $user->setPassword($this->encoder->encodePassword($user, $credentials['password']));
         $manager->persist($user);
+        $this->addReference('test_user', $user);
 
         // Creation of simple users who will be linked to tasks
         $this->createMany(4, 'main_user', function () {

@@ -10,29 +10,35 @@ use Doctrine\Persistence\ObjectManager;
 
 class TaskFixture extends AbstractFixture implements DependentFixtureInterface
 {
+    private function getDummyTask(): Task
+    {
+        return (new Task())
+            ->setTitle($this->faker->words(3, true))
+            ->setContent($this->faker->paragraph(1))
+        ;
+    }
+
     protected function loadData(ObjectManager $manager): void
     {
-        $users = $this->getReferences('main_user');
-
         // Creation of many tasks without user linked to it
         $this->createMany(5, 'unlinked_task', function () {
-            return (new Task())
-                ->setTitle($this->faker->words(3, true))
-                ->setContent($this->faker->paragraph(1))
-            ;
+            return $this->getDummyTask();
         });
 
         /**
-         * Creation of several tasks affiliated to the user
+         * Creation of several tasks affiliated to the users
          * @var User[] $users
          */
+        $users = [
+            $this->getReference('test_user'),
+            $this->getReference('admin_user'),
+            ...$this->getReferences('main_user')
+        ];
+
         foreach ($users as $user) {
             $this->createMany(3, sprintf('%s_task', $user->getUsername()), function () use ($user) {
-                return (new Task())
-                    ->setTitle($this->faker->words(3, true))
-                    ->setContent($this->faker->paragraph(1))
-                    ->setUser($user)
-                ;
+                return $this->getDummyTask()
+                    ->setUser($user);
             });
         }
 
